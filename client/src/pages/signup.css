@@ -102,14 +102,14 @@ body {
     background: #fafafa;
   }
   .form_wrapper input[type=text]:focus, .form_wrapper input[type=email]:focus, .form_wrapper input[type=password]:focus {
-    -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-    -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-    box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-    border: 1px solid #f5ba1a;
+    -webkit-box-shadow: 0 0 2px 1pxrgb(0,130,230);
+    -moz-box-shadow: 0 0 2px 1px rgb(0,130,230);
+    box-shadow: 0 0 2px 1px rgb(0,130,230);
+    border: 1px solid rgb(0,130,230)ba1a;
     background: #fafafa;
   }
   .form_wrapper input[type=submit] {
-    background: #f5ba1a;
+    background:rgb(0,130,230);
     height: 35px;
     line-height: 35px;
     width: 100%;
@@ -125,10 +125,10 @@ body {
     transition: all 0.3s ease-in-out;
   }
   .form_wrapper input[type=submit]:hover {
-    background: #e1a70a;
+    background: rgb(0,130,230);
   }
   .form_wrapper input[type=submit]:focus {
-    background: #e1a70a;
+    background: rgb(0,130,230);
   }
   .form_wrapper input[type=checkbox], .form_wrapper input[type=radio] {
     border: 0;
@@ -266,10 +266,10 @@ body {
     z-index: 1;
     text-align: center;
     padding: 15px;
-    color: #f5ba1a;
+    color: #116ae6;
   }
   .credit a {
-    color: #e1a70a;
+    color: #0a63e1;
   }
   
   @-webkit-keyframes check {
@@ -421,4 +421,12 @@ select {
 
 option {
     text-transform: capitalize;
+}
+
+
+
+.form_wrapper {
+
+  border-top: 5px solid #0a63e1;
+ 
 }

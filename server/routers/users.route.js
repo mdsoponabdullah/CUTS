@@ -1,14 +1,15 @@
-const { getAllUsers,createUser, updateUser,deleteUser } = require("../controllers/users.controller");
+const {getAllUsers,createUsers, updateUsers,deleteUsers} = require("../controllers/users.controller");
 
 const route = require("express").Router();
 
 
 route.get("/",getAllUsers);
 
-route.post("/",createUser);
+route.post("/",createUsers);
 
-route.put("/:id",updateUser);
-route.delete("/:id",deleteUser);
+route.put("/:id",updateUsers);
+//route.delete("/:id",deleteUsers);
+route.delete("/",deleteUsers);
 
 
 module.exports = route;

@@ -4,8 +4,12 @@ const exprsee = require("express");
 const app =exprsee();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const userRoute = require("./routers/users.route");
-const studentRoute = require("./routers/students.route")
+const demoRoute = require("./routers/demo.route");
+const usersRoute = require("./routers/users.route");
+const userRoute = require("./routers/user.route");
+
+const loginRoute = require("./routers/login.route");
+
 app.use(bodyParser.urlencoded({extended :true}));
 app.use(bodyParser.json());
 app.use(cors());
@@ -15,13 +19,20 @@ app.use(cors());
 
 
 
-//students
-
-app.use("/students",studentRoute)
-
 //users route
 
+app.use("/users",usersRoute);
+
+//user route
 app.use("/user",userRoute);
+
+//login route
+
+app.use("/login",loginRoute)
+
+//demo route
+
+app.use("/demo",demoRoute);
 
 
 

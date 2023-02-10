@@ -6,16 +6,18 @@ export default function Navbar2() {
     <div>
       <nav>
       <input type="checkbox" id="check" />
-      <label for="check" class="checkbtn">
+      <label  className="checkbtn">
         <i className="fas fa-bars"></i>
       </label>
-      <label className="logo">DesignX</label>
+      <label className="logo">CUTS</label>
       <ul>
-        <li><a className="active" href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Feedback</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">About</a></li>
+        <li><a href="/">Services</a></li>
+        <li><a href="/selectUsers">Users</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/loginAs">Login</a> </li>
+        
       </ul>
     </nav>
     </div>

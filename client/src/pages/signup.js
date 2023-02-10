@@ -4,73 +4,94 @@ import React, { useState } from 'react';
   import { faUser } from '@fortawesome/free-solid-svg-icons';
   import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
   import "./signup.css";
+  import { useLocation, useNavigate } from 'react-router-dom';
 
   import axios from 'axios';
-import Navbar1 from '../component/Navbar1';
-import Navbar2 from '../component/Navbar2';
+
+  import Navbar2 from '../component/Navbar2';
   
+ 
 
 
 
 
     const Signup=()=> {
+
+     
     
-///useState hook
+    /// useLocation hook
+      const location = useLocation();
+
+      const jobTitle = location.state.jobTitle;
+      //alert(jobTitle);
+      ///useState hook
 
 
-const [user,setUser] = useState({Student_id:"",name:"",email:"",phone:"",deptID:"",password1:"",password2:""});
+      const [user,setUser] = useState({Student_id:"",name:"",email:"",phone:"",deptID:"",password1:"",password2:""});
 
 
 
 
-//destructing
-const { Student_id,name,email,phone,deptID,password1,password2} = user;
+      //destructing
+      const { Student_id,name,email,phone,deptID,password1,password2} = user;
 
 
-const handleOnchange =(e)=>{
+      const handleOnchange =(e)=>{
  
  
-  setUser({...user,[e.target.name]:e.target.value});
+       setUser({...user,[e.target.name]:e.target.value});
 
 
      
-}
+      }
+
+      const navigate = useNavigate();
 
 
-const submit=(e)=>{
 
-    if(password1 !==password2)
-    {
+   const submit=(e)=>{    
+
+  
+
+       if(password1 !==password2)
+       {
         alert("password are not mathched");
-       return ;
+        navigate('/signup')
        
-    }
+       }
  
-  let x = {Student_id,name,email,phone,deptID,password1,password2}
- // console.log(name,email,password) // alternative
- e.preventDefault(); 
+    //let x = {Student_id,name,email,phone,deptID,password1,password2}
+    // console.log(name,email,password) // alternative
+    e.preventDefault(); 
 
- console.log(x) ;
+    console.log(jobTitle) ;
+ 
 
- axios.post("http://localhost:3005/students",{
+    axios.post("http://localhost:3005/users",{
     Student_id:Student_id,
     name : name,
     email:email,
     phone:phone,
     deptID : deptID,
     password : password1,
+    tableName : jobTitle
    
 
- }).then(()=>{
-    alert("signup is completed");
- });
+    }).then(()=>{
+     
+   // alert("signup is completed");
+    navigate('/loginAs')
+  });
    ///submit er por input box gulo k refresh hote dey na
-  setUser({Student_id:"",name:"",email:"",phone:"",deptID:"",password1:"",password2:""});
+   //setUser({Student_id:"",name:"",email:"",phone:"",deptID:"",password1:"",password2:""});
+ 
+  
+
+ }
 
 
-}
 
-
+ 
 
 
 
@@ -84,17 +105,18 @@ const submit=(e)=>{
 
       return ( 
        <div>
-      <div> <Navbar2 />
-
-      </div>
+      <div> <Navbar2 /> </div>
         <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">
             <h2>Give Your Information </h2>
           </div>
           <div className="row clearfix">
-            <div className> 
+            <div > 
               <form action="" method="" onSubmit={submit} >
+
+
+
                 <div className="input_field"> <span><FontAwesomeIcon icon={faUser} /></span>
                   <input type="text" name="Student_id" placeholder="Enter your student ID " onChange={handleOnchange} value = {Student_id} required />
                 </div>
@@ -109,7 +131,7 @@ const submit=(e)=>{
                   <input type="text" name="phone" placeholder="Enter your phone number" onChange={handleOnchange} value = {phone} required />
                 </div>
 
-                <div class="input_field select_option">
+                <div className="input_field select_option">
                 <span><FontAwesomeIcon icon={faBuilding} ></FontAwesomeIcon></span>    
                 <select name ="deptID"  onChange={handleOnchange} value = {deptID} required >
                   <option >Select Your Department</option>
@@ -135,7 +157,7 @@ const submit=(e)=>{
                   <option value= "21" >Fisheries</option>
                   <option value= "22" >Occenology</option>
                 </select>
-                <div class="select_arrow"></div>
+                <div className="select_arrow"></div>
               </div>
 
                
@@ -165,16 +187,11 @@ const submit=(e)=>{
 
     /*
 
-    <div className="input_field"> <span><FontAwesomeIcon icon={faBuilding} ></FontAwesomeIcon></span>
-                  <input type="text" name="deptID" placeholder="Enter your DeptID" onChange={handleOnchange} value = {deptID} required />
-                </div>
-
-     <div class="input_field select_option">
+   <div class="input_field select_option">
                 <span><FontAwesomeIcon icon={faBuilding} ></FontAwesomeIcon></span>    
-                <select name ="deptID" >
+                <select name ="deptID"  onChange={handleOnchange} value = {deptID} required >
                   <option >Select Your Department</option>
-                  
-                  <option value= "1" >IER</option>
+                  <option value= "1" >IER</option> 
                   <option value= "2" >IR</option>
                   <option value= "3" >Finance</option>
                   <option value= "4" >Accounting</option>
@@ -198,6 +215,7 @@ const submit=(e)=>{
                 </select>
                 <div class="select_arrow"></div>
               </div>
+
 
 
     */
