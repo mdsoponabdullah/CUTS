@@ -430,3 +430,20 @@ option {
   border-top: 5px solid #0a63e1;
  
 }
+
+.logoutContainer {
+  
+  float: right;
+}
+.lcCulmn2 {
+  color: red;
+  font-size: 12px;
+}
+
+button.logOutbutton {
+  border: none;
+  color: #02c2ff;
+  font-weight: 800;
+  background: white;
+  letter-spacing: 1px;
+}

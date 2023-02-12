@@ -5,6 +5,8 @@ const route = require("express").Router();
 
 route.get("/",getUser);
 
+
+
 // route.post("/",createUsers);
 
 // route.put("/:id",updateUsers);

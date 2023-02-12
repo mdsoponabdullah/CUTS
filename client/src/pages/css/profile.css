@@ -1,7 +1,19 @@
-body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-    height: 100%;
+
+body {
+    background-image: url("../../component/image/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  
 }
+  
+  
+  #root{
+
+    content: "";
+    background-color: rgba(6, 0, 0, 0.463); /* or any desired color and opacity */
+   
+    height: 100vh;
+  }
 .emp-profile{
     padding: 3%;
     margin-top: 3%;
@@ -160,4 +172,16 @@ h1.users_heading {
     font-size: 24px;
     padding-bottom: 10px;
     font-weight: 900;
+}
+
+.footer {
+    /* position: relative; */
+    background: #0082E6;
+  
+}
+
+.footer h1 {
+    margin: 0px;
+    font-size: 20px
+    
 }

@@ -9,6 +9,7 @@ const usersRoute = require("./routers/users.route");
 const userRoute = require("./routers/user.route");
 
 const loginRoute = require("./routers/login.route");
+const studentcommunityRoute = require("./routers/studentcommunity.route");
 
 app.use(bodyParser.urlencoded({extended :true}));
 app.use(bodyParser.json());
@@ -34,6 +35,8 @@ app.use("/login",loginRoute)
 
 app.use("/demo",demoRoute);
 
+//student_community
+app.use("/studentcommunity",studentcommunityRoute)
 
 
 // //home route

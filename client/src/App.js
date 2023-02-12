@@ -10,6 +10,8 @@ import LoginAs from './pages/LoginAs';
 import Profile from './pages/Profile';
 import Users from './pages/Users';
 import SelectUsers from './pages/selectUsers';
+import Messenger from './pages/messenger';
+import Demo from './component/demo';
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path ='/profile' element={ <Profile /> } />
         <Route path ='/users' element={ <Users /> } />
         <Route path ='/selectUsers' element={ <SelectUsers /> } />
+        <Route path ='/messenger' element={ <Messenger /> } />
+        <Route path ='/demo' element={ <Demo /> } />
         <Route  path='*' element={<Error /> } />
       </Routes>
     </BrowserRouter>  

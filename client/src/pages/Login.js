@@ -27,6 +27,8 @@ const Login = () => {
 
   const [user, setUser] = useState(null);
 
+  
+
   ///useEffect
 
   useEffect(() => {
@@ -66,12 +68,12 @@ const Login = () => {
         setUser(data.user);
          console.log(user);
 
-        // Context
-        // <UserContext.Provider value={user}>
-        //   <Profile />
-        // </UserContext.Provider>;
+        
 
-        navigate("/profile", {state : { user:user }});
+        localStorage.setItem('loginInformationOfUser', JSON.stringify(user));
+        localStorage.setItem('tableName', tableName);
+
+        navigate("/profile");
       } else {
         setError(data.message);
         console.log(error);
@@ -82,13 +84,7 @@ const Login = () => {
     }
   };
 
-  // if (user!==null) {
-  //   return (
-  //     <UserContext.Provider value={user}>
-  //       <div>Welcome, {user.userId}!</div>
-  //     </UserContext.Provider>
-  //   );
-  // }
+  
 
   return (
     <div>
