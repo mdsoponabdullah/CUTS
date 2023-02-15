@@ -1,7 +1,75 @@
-.messenger {
-    width: 500px;
-    background: blue;
-    margin: auto;
-    padding: 30px 37px;
+.messageBox {
+  height: 78vh;
+  /* padding: 1em; */
+  
+  width: 100%;
+  padding: 30px;
+  background: #000000c9;
+  overflow: scroll;
+  overflow-x: hidden;
+
+}
+
+.message {
+  width: 300px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #0082e6;
+  color: white;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.inputbox {
+  width: 100%;
+  
+  background: white;
+  padding: 12px;
+  margin-bottom: 20px !important;
+}
+
+input.messageInputBox {
+  width: 75%;
+  background: #f5f3f2;
+  border: none;
+  padding: 11px 19px;
+  border-radius: 20px;
+  margin-left: 14px;
+  outline: none;
+  border-bottom-style: groove;
+}
+
+
+
+
+button.sendMessage {
+    margin-left: 20px;
+    padding: 8px 28px;
+    background: #0082E6;
     color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border-style: none!important;
+}
+.messenger {
+    width: 66%;
+    
+    margin: 35px auto;
+}
+
+.messengerHeader {
+    width: 100%;
+    padding: 10px;
+    /* height: 10px; */
+    background: white;
+}
+.messenger {
+  width: 54%;
+  margin: 35px auto;
+}
+
+h6.userName {
+  /* line-height: inherit; */
+  margin-bottom: 2px;
 }

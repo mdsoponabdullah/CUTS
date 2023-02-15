@@ -46,7 +46,7 @@ export default function Navbar2() {
             <a href="/">About</a>
           </li>
           <li>
-            <a href="/">Services</a>
+            <a href="/messenger">Messenger</a>
           </li>
           <li>
             <a href="/selectUsers">Users</a>

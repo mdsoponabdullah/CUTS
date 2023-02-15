@@ -1,7 +1,7 @@
 const connection = require("../MySql/db");
 
 const getStudentCommunity = (req, res) => {
-  const SQLquery = `SELECT * FROM student_community natural join student`;
+  const SQLquery = `SELECT * FROM student_community natural join student order by message_id ASC `;
 
   connection.query(SQLquery, (error, results) => {
     if (error) throw error;

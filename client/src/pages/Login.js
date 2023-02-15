@@ -1,23 +1,23 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Navbar2 from "../component/Navbar2";
 import "./signup.css";
 import { useLocation, useNavigate } from "react-router-dom";
-
-//import Profile from "./Profile";
-
-export const UserContext = createContext();
-
-// import axios from 'axios';
+import AppContext from "../context/AppContext";
 
 const Login = () => {
+  const { userTypeTableName, setUserTypeTableName } = useContext(AppContext);
+
   const navigate = useNavigate();
 
   const location = useLocation();
 
   const tableName = location.state.jobTitle;
+  
+
+ 
 
   const [userId, setUserId] = useState("");
 
@@ -26,8 +26,6 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const [user, setUser] = useState(null);
-
-  
 
   ///useEffect
 
@@ -55,36 +53,40 @@ const Login = () => {
   ///handleSubmit
 
   const handleSubmit = async (e) => {
+   
     e.preventDefault();
+    console.log(user);
+    let loger;
+    if (tableName === "student") {
+      loger = user.filter(
+        (obj) =>
+          obj.Student_id === parseInt(userId) && obj.password === password
+      );
+    } else if (tableName === "staff") {
+      loger = user.filter(
+        (obj) => obj.staff_id === parseInt(userId) && obj.password === password
+      );
+    } else if (tableName === "teacher") {
+      loger = user.filter(
+        (obj) =>
+          obj.teacher_id === parseInt(userId) && obj.password === password
+      );
+    }
 
-    try {
-      const response = await fetch("http://localhost:3005/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, password, tableName }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        setUser(data.user);
-         console.log(user);
+    console.log(loger);
+    if (loger.length > 0) {
+      localStorage.setItem("loginInformationOfUser", JSON.stringify(loger[0]));
+      localStorage.setItem("tableName", tableName);
+      setUserTypeTableName(tableName);
+      alert(userTypeTableName);
 
-        
+      navigate("/profile");
+    } else {
+      setError("UserName or Password is incorrect");
 
-        localStorage.setItem('loginInformationOfUser', JSON.stringify(user));
-        localStorage.setItem('tableName', tableName);
-
-        navigate("/profile");
-      } else {
-        setError(data.message);
-        console.log(error);
-        alert(error);
-      }
-    } catch (error) {
-      setError("An error occurred, please try again later.");
+      alert(error);
     }
   };
-
-  
 
   return (
     <div>

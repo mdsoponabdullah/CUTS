@@ -1,19 +1,13 @@
 
 body {
-    background-image: url("../../component/image/background.jpg");
+    background-image: url("../../component/image/cu1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   
 }
   
   
-  #root{
-
-    content: "";
-    background-color: rgba(6, 0, 0, 0.463); /* or any desired color and opacity */
-   
-    height: 100vh;
-  }
+  
 .emp-profile{
     padding: 3%;
     margin-top: 3%;
