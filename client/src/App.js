@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+//import { BrowserRouter as Router, Switch } from "react-router-dom";
+//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
 
@@ -14,27 +16,37 @@ import SelectUsers from "./pages/selectUsers";
 import Messenger from "./pages/messenger";
 import Demo from "./component/demo";
 import AppContext from "./context/AppContext";
+import EdditProfile from "./pages/EdditProfile";
+import SelectTime from "./shedulling/SelectTime";
+
+
 
 function App() {
   const [userTypeTableName, setUserTypeTableName] = useState("");
   return (
-    <AppContext.Provider value={{ userTypeTableName, setUserTypeTableName }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/signupAs" element={<SignupAs />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/loginAs" element={<LoginAs />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/selectUsers" element={<SelectUsers />} />
-          <Route path="/messenger" element={<Messenger />} />
-          <Route path="/demo" element={<Demo />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </BrowserRouter>
-    </AppContext.Provider>
+    <div>
+      <AppContext.Provider value={{ userTypeTableName, setUserTypeTableName }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/signupAs" element={<SignupAs />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/loginAs" element={<LoginAs />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/selectUsers" element={<SelectUsers />} />
+            <Route path="/messenger" element={<Messenger />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/SelectTime" element={ <SelectTime /> } />
+            <Route path="/edditprofile" element={<EdditProfile />} />
+            
+            
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      </AppContext.Provider>
+    </div>
   );
 }
 

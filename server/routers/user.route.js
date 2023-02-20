@@ -1,10 +1,11 @@
-const {getUser,userLoginCheck} = require("../controllers/user.controller");
+const {getUser,userLoginCheck,updateUser} = require("../controllers/user.controller");
 
 const route = require("express").Router();
 
 
 route.get("/",getUser);
 route.post("/",userLoginCheck);
+route.put("/",updateUser);
 
 
 

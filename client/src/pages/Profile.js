@@ -6,11 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/profile.css";
 import { useNavigate } from "react-router-dom";
 
-
 //import { UserContext } from "./Login";
 
 const Profile = () => {
-
   const navigate = useNavigate();
 
   const [user, setUser] = useState({});
@@ -83,8 +81,8 @@ const Profile = () => {
                 <div className="profile-head">
                   <h5>{name}</h5>
                   <h6>{proffession}</h6>
-                  <p className="proile-rating">
-                    RANKINGS : <span>8/10</span>
+                  <p className="proile-rating" style={{ color: "rgb(255 255 255 / 0%)!important" }}>
+                    RANKINGS : <span style={{ color: "rgb(255 255 255 / 0%);" }}>8/10</span>
                   </p>
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item">
@@ -117,12 +115,14 @@ const Profile = () => {
                 </div>
               </div>
               <div className="col-md-2">
-                <input
-                  type="submit"
+                <button
                   className="profile-edit-btn"
-                  name="btnAddMore"
-                  defaultValue="Edit Profile"
-                />
+                  onClick={() => {
+                    navigate("/EdditProfile");
+                  }}
+                >
+                  Edit Profile
+                </button>
               </div>
             </div>
             <div className="row">
@@ -236,11 +236,24 @@ const Profile = () => {
               </div>
             </div>
           </form>
-          <div className="logoutContainer"><div className="lcCulmn1"></div> <div className="lcCulmn2"><button className="logOutbutton" onClick={()=>{ localStorage.removeItem('loginInformationOfUser'); localStorage.removeItem('tableName'); navigate("/loginAs") }}>Logout</button> from the account?</div> </div>
+          <div className="logoutContainer">
+            <div className="lcCulmn1"></div>{" "}
+            <div className="lcCulmn2">
+              <button
+                className="logOutbutton"
+                onClick={() => {
+                  localStorage.removeItem("loginInformationOfUser");
+                  localStorage.removeItem("tableName");
+                  navigate("/loginAs");
+                }}
+              >
+                Logout
+              </button>{" "}
+              from the account?
+            </div>{" "}
+          </div>
         </div>
       </div>
-      
-     
     </div>
   );
 };

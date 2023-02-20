@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./css/navbar2.css";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
+import { RiMessengerLine } from "react-icons/ri";
+//import { BiExit } from "react-icons/bi";
+import { BsFillUnlockFill } from "react-icons/bs";
+import { AiFillUnlock } from "react-icons/ai";
+import { SiAboutdotme } from "react-icons/si";
 
 export default function Navbar2() {
   const [tableName, setTableName] = useState("");
@@ -18,13 +25,13 @@ export default function Navbar2() {
   let isSingin1 = "";
  
   if (tableName !== "") {
-    x = "Profile";
+    x = <CgProfile />;
     y = "/profile";
-     isSingin1="Logout";
+     isSingin1=<AiFillUnlock />;
      
 
   } else {
-    x = "Login";
+    x = <BsFillUnlockFill />;
     y = "/loginAs";
     isSingin1="";
      
@@ -40,17 +47,17 @@ export default function Navbar2() {
         <label className="logo">CUTS</label>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a href="/"><AiOutlineHome /></a>
           </li>
           <li>
-            <a href="/">About</a>
+            <a href="/"><SiAboutdotme /></a>
           </li>
           <li>
-            <a href="/messenger">Messenger</a>
+            <a href="/messenger"><RiMessengerLine /></a>
           </li>
-          <li>
+         {/* { <li>
             <a href="/selectUsers">Users</a>
-          </li>
+          </li> } */}
           <li>
             <a href={y}>{x}</a>
           </li>

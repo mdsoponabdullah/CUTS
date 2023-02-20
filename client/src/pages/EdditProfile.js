@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuilding, faLock, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import "./signup.css";
+import { useNavigate } from "react-router-dom";
 
-export default function EdditProfile() {
-  const navigate = useNavigate();
+import axios from "axios";
 
+import Navbar2 from "../component/Navbar2";
+const EdditProfile = () => {
+  /// check password
+
+  const [givenPassword, setGivenPassword] = useState();
+
+  ///
+
+  ///storage
   const [user, setUser] = useState({});
   const [tableName, setTableName] = useState("");
 
@@ -19,231 +33,488 @@ export default function EdditProfile() {
     }
   }, []);
 
+  ///end
+
+  //destructing
+  //const { Student_id, Student_name, email, phone, dept_id, password } = user;
   const {
     Student_id,
-    teacher_id,
     staff_id,
+    teacher_id,
     Student_name,
-    teacher_name,
     staff_name,
+    teacher_name,
     email,
     phone,
-    dept_name,
+    dept_id,
+    password,
   } = user;
 
-  let id;
-  let name;
-  let proffession;
+  const id =
+    tableName === "student"
+      ? Student_id
+      : tableName === "staff"
+      ? staff_id
+      : teacher_id;
 
-  if (tableName === "student") {
-    id = Student_id;
-    name = Student_name;
-    proffession = "Student";
-  } else if (tableName === "staff") {
-    id = staff_id;
-    name = staff_name;
-    proffession = "Staff";
-  } else {
-    id = teacher_id;
-    name = teacher_name;
-    proffession = "Teacher";
-  }
-  //console.log(Student_name);
+ 
 
-  return (
-    <div>
-      <Navbar2 />
+  //end
+
+  const handleOnchange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const navigate = useNavigate();
+
+  const submit = (e) => {
+    console.log(typeof givenPassword, typeof password);
+    e.preventDefault();
+
+    if (givenPassword === password) {
+      localStorage.setItem("loginInformationOfUser", JSON.stringify(user));
+      console.log(id);
+
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const body = JSON.stringify(user);
+
+        axios.put(
+          `http://localhost:3005/user?tableName=${tableName}`,
+          body,
+          config
+        );
+        alert("Profile updated successfully");
+      } catch (error) {
+        console.error(error.response.data);
+        alert("Error updating profile");
+      }
+
+      navigate("/profile");
+    } else {
+      alert("Your password is not correct");
+      navigate("/edditprofile");
+    }
+  };
+
+  if (tableName === "student")
+    return (
       <div>
-        <div className="container emp-profile">
-          <form method="post">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="profile-img">
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                    alt=""
+        <div>
+          {" "}
+          <Navbar2 />{" "}
+        </div>
+        <div className="form_wrapper">
+          <div className="form_container">
+            <div className="title_container">
+              <h2>Eddit Your Profile</h2>
+            </div>
+            <div className="row clearfix">
+              <div>
+                <form action="" method="" onSubmit={submit}>
+                  {/*<div className="input_field">
+                  {" "}
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <input
+                    type="text"
+                    name="Student_id"
+                    placeholder="Enter your student ID "
+                    onChange={handleOnchange}
+                    value={Student_id}
+                    required
+                  /> 
+                </div>*/}
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faUser} />
+                    </span>
+                    <input
+                      type="text"
+                      name="Student_name"
+                      placeholder="Enter your certificate name"
+                      onChange={handleOnchange}
+                      value={Student_name}
+                      required
+                    />
+                  </div>
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={handleOnchange}
+                      value={email}
+                      required
+                    />
+                  </div>
+
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Enter your phone number"
+                      onChange={handleOnchange}
+                      value={phone}
+                      required
+                    />
+                  </div>
+
+                  <div className="input_field select_option">
+                    <span>
+                      <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
+                    </span>
+                    <select
+                      name="dept_id"
+                      onChange={handleOnchange}
+                      value={dept_id}
+                      required
+                    >
+                      <option>Select Your Department</option>
+                      <option value="1">IER</option>
+                      <option value="2">IR</option>
+                      <option value="3">Finance</option>
+                      <option value="4">Accounting</option>
+                      <option value="5">Manegment</option>
+                      <option value="6">Marketing</option>
+                      <option value="7">HR</option>
+                      <option value="8">Banking</option>
+                      <option value="9">Math</option>
+                      <option value="10">CSE</option>
+                      <option value="11">EEE</option>
+                      <option value="13">Physics</option>
+                      <option value="14">Chemistry</option>
+                      <option value="15">Applied Chemistry</option>
+                      <option value="16">Arabik</option>
+                      <option value="17">Poly</option>
+                      <option value="18">Bangla</option>
+                      <option value="19">English</option>
+                      <option value="20">History</option>
+                      <option value="21">Fisheries</option>
+                      <option value="22">Occenology</option>
+                    </select>
+                    <div className="select_arrow"></div>
+                  </div>
+
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={(e) => {
+                        setGivenPassword(e.target.value);
+                      }}
+                      value={givenPassword}
+                      required
+                    />
+                  </div>
+                  <input
+                    className="button"
+                    type="submit"
+                    defaultValue="Register"
                   />
-                  <div className="file btn btn-lg btn-primary">
-                    Change Photo
-                    <input type="file" name="file" />
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="profile-head">
-                  <h5>{name}</h5>
-                  <h6>{proffession}</h6>
-                  <p className="proile-rating">
-                    RANKINGS : <span>8/10</span>
-                  </p>
-                  <ul className="nav nav-tabs" id="myTab" role="tablist">
-                    <li className="nav-item">
-                      <a
-                        className="nav-link active"
-                        id="home-tab"
-                        data-toggle="tab"
-                        href="#home"
-                        role="tab"
-                        aria-controls="home"
-                        aria-selected="true"
-                      >
-                        About
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        id="profile-tab"
-                        data-toggle="tab"
-                        href="#profile"
-                        role="tab"
-                        aria-controls="profile"
-                        aria-selected="false"
-                      >
-                        Timeline
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-md-2">
-                <input
-                  type="submit"
-                  className="profile-edit-btn"
-                  name="btnAddMore"
-                  defaultValue="Edit Profile"
-                />
+                </form>
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-4">
-                <div className="profile-work"></div>
-              </div>
-              <div className="col-md-8">
-                <div className="tab-content profile-tab" id="myTabContent">
-                  <div
-                    className="tab-pane fade show active"
-                    id="home"
-                    role="tabpanel"
-                    aria-labelledby="home-tab"
-                  >
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>User Id</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{id}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Name</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{name}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Email</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{email}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Phone</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{phone}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Department</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{dept_name}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="profile"
-                    role="tabpanel"
-                    aria-labelledby="profile-tab"
-                  >
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Experience</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>Expert</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Hourly Rate</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>10$/hr</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Total Projects</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>230</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>English Level</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>Expert</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Availability</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>6 months</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <label>Your Bio</label>
-                        <br />
-                        <p>Your detail description</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <div className="logoutContainer">
-            <div className="lcCulmn1"></div>{" "}
-            <div className="lcCulmn2">
-              <button
-                className="logOutbutton"
-                onClick={() => {
-                  localStorage.removeItem("loginInformationOfUser");
-                  localStorage.removeItem("tableName");
-                  navigate("/loginAs");
-                }}
-              >
-                Logout
-              </button>{" "}
-              from the account?
-            </div>{" "}
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+
+
+    else if(tableName==="staff")
+    return (
+      <div>
+        <div>
+          {" "}
+          <Navbar2 />{" "}
+        </div>
+        <div className="form_wrapper">
+          <div className="form_container">
+            <div className="title_container">
+              <h2>Eddit Your Profile</h2>
+            </div>
+            <div className="row clearfix">
+              <div>
+                <form action="" method="" onSubmit={submit}>
+                  {/*<div className="input_field">
+                  {" "}
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <input
+                    type="text"
+                    name="Student_id"
+                    placeholder="Enter your student ID "
+                    onChange={handleOnchange}
+                    value={Student_id}
+                    required
+                  /> 
+                </div>*/}
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faUser} />
+                    </span>
+                    <input
+                      type="text"
+                      name="staff_name"
+                      placeholder="Enter your certificate name"
+                      onChange={handleOnchange}
+                      value={staff_name}
+                      required
+                    />
+                  </div>
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={handleOnchange}
+                      value={email}
+                      required
+                    />
+                  </div>
+
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Enter your phone number"
+                      onChange={handleOnchange}
+                      value={phone}
+                      required
+                    />
+                  </div>
+
+                  <div className="input_field select_option">
+                    <span>
+                      <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
+                    </span>
+                    <select
+                      name="dept_id"
+                      onChange={handleOnchange}
+                      value={dept_id}
+                      required
+                    >
+                      <option>Select Your Department</option>
+                      <option value="1">IER</option>
+                      <option value="2">IR</option>
+                      <option value="3">Finance</option>
+                      <option value="4">Accounting</option>
+                      <option value="5">Manegment</option>
+                      <option value="6">Marketing</option>
+                      <option value="7">HR</option>
+                      <option value="8">Banking</option>
+                      <option value="9">Math</option>
+                      <option value="10">CSE</option>
+                      <option value="11">EEE</option>
+                      <option value="13">Physics</option>
+                      <option value="14">Chemistry</option>
+                      <option value="15">Applied Chemistry</option>
+                      <option value="16">Arabik</option>
+                      <option value="17">Poly</option>
+                      <option value="18">Bangla</option>
+                      <option value="19">English</option>
+                      <option value="20">History</option>
+                      <option value="21">Fisheries</option>
+                      <option value="22">Occenology</option>
+                    </select>
+                    <div className="select_arrow"></div>
+                  </div>
+
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={(e) => {
+                        setGivenPassword(e.target.value);
+                      }}
+                      value={givenPassword}
+                      required
+                    />
+                  </div>
+                  <input
+                    className="button"
+                    type="submit"
+                    defaultValue="Register"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    else if(tableName==="teacher")
+    return (
+      <div>
+        <div>
+          {" "}
+          <Navbar2 />{" "}
+        </div>
+        <div className="form_wrapper">
+          <div className="form_container">
+            <div className="title_container">
+              <h2>Eddit Your Profile</h2>
+            </div>
+            <div className="row clearfix">
+              <div>
+                <form action="" method="" onSubmit={submit}>
+                  {/*<div className="input_field">
+                  {" "}
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <input
+                    type="text"
+                    name="Student_id"
+                    placeholder="Enter your student ID "
+                    onChange={handleOnchange}
+                    value={Student_id}
+                    required
+                  /> 
+                </div>*/}
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faUser} />
+                    </span>
+                    <input
+                      type="text"
+                      name="teacher_name"
+                      placeholder="Enter your certificate name"
+                      onChange={handleOnchange}
+                      value={teacher_name}
+                      required
+                    />
+                  </div>
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={handleOnchange}
+                      value={email}
+                      required
+                    />
+                  </div>
+
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Enter your phone number"
+                      onChange={handleOnchange}
+                      value={phone}
+                      required
+                    />
+                  </div>
+
+                  <div className="input_field select_option">
+                    <span>
+                      <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
+                    </span>
+                    <select
+                      name="dept_id"
+                      onChange={handleOnchange}
+                      value={dept_id}
+                      required
+                    >
+                      <option>Select Your Department</option>
+                      <option value="1">IER</option>
+                      <option value="2">IR</option>
+                      <option value="3">Finance</option>
+                      <option value="4">Accounting</option>
+                      <option value="5">Manegment</option>
+                      <option value="6">Marketing</option>
+                      <option value="7">HR</option>
+                      <option value="8">Banking</option>
+                      <option value="9">Math</option>
+                      <option value="10">CSE</option>
+                      <option value="11">EEE</option>
+                      <option value="13">Physics</option>
+                      <option value="14">Chemistry</option>
+                      <option value="15">Applied Chemistry</option>
+                      <option value="16">Arabik</option>
+                      <option value="17">Poly</option>
+                      <option value="18">Bangla</option>
+                      <option value="19">English</option>
+                      <option value="20">History</option>
+                      <option value="21">Fisheries</option>
+                      <option value="22">Occenology</option>
+                    </select>
+                    <div className="select_arrow"></div>
+                  </div>
+
+                  <div className="input_field">
+                    {" "}
+                    <span>
+                      <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
+                    </span>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={(e) => {
+                        setGivenPassword(e.target.value);
+                      }}
+                      value={givenPassword}
+                      required
+                    />
+                  </div>
+                  <input
+                    className="button"
+                    type="submit"
+                    defaultValue="Register"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+};
+
+export default EdditProfile;

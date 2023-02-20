@@ -5,13 +5,8 @@ const createLogin = (req, res) => {
   let SQLquery;
   if (tableName === "staff") {
     SQLquery = `SELECT * FROM ${tableName} WHERE ${tableName}_id = '${userId}' AND password = '${password}'`;
-
-  }
-
-  else {
+  } else {
     SQLquery = `SELECT * FROM ${tableName} natural join department  WHERE ${tableName}_id = '${userId}' AND password = '${password}'`;
-
-
   }
   connection.query(SQLquery, (err, results) => {
     if (err) throw err;

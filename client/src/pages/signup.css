@@ -431,19 +431,34 @@ option {
  
 }
 
+.form_wrapper {
+  background: #00000052;
+  border-top: 5px solid #0a63e1;
+  color: white;
+  text-align: left;
+  font-size: 14px;
+}
+
 .logoutContainer {
   
   float: right;
 }
+
+
 .lcCulmn2 {
-  color: red;
-  font-size: 12px;
+  color: #fffefe;
+  font-size: 16px;
 }
 
 button.logOutbutton {
   border: none;
-  color: #02c2ff;
+  color: #ffffff;
   font-weight: 800;
-  background: white;
+  background: #01000075;
   letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+.profile-head h6 {
+  color: white;
 }

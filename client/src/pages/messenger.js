@@ -9,7 +9,7 @@ const Message = ({ text, userId, user, userName }) => (
     style={{
       width: "100%",
       position: "relative",
-      left: userId !== user.Student_id ? "60%" : "0%",
+      left: userId !== user.Student_id ? "67%" : "0%",
     }}
   >
     <div

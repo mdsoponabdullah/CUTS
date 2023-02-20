@@ -1,0 +1,28 @@
+.messengerIcon {
+    position: fixed;
+    /* font-size: 43px; */
+    color: white;
+    background: #0082E6;
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    /* margin: auto; */
+    border-radius: 50%;
+    left: 92%;
+    top: 84%;
+    /* padding-bottom: 46px; */
+}
+
+.messengerIcon a {
+    /* color: var(--bs-link-color); */
+    /* text-decoration: underline; */
+    color: white;
+    position: absolute;
+    right: 10px;
+    font-size: 49px;
+    bottom: 1px;
+}
+.messengerIcon a:hover {
+    background: #86707000;
+    color: #b31999 !important;
+}
