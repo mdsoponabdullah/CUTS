@@ -10,12 +10,12 @@ function SelectTime() {
 
   const location = useLocation();
 
-  const { tableName, pointId, day } = location.state;
+  const { tableName, pointId, desPointId,day } = location.state;
 
   console.log(pointId + tableName);
 
   //url for axios get
-  const geturl = `http://localhost:3005/shedules?tableName=${tableName}&pointId=${pointId}&day=${day}`;
+  const geturl = `http://localhost:3005/shedules?tableName=${tableName}&pointId=${pointId}&day=${day}&desPointId=${desPointId}`;
   const [urlForGet, seturlForGet] = useState(geturl);
 
   if (0) {

@@ -40,11 +40,15 @@ app.use("/studentcommunity", studentcommunityRoute);
 //points
 app.use("/points", pointsRoute);
 
+
+
 // //home route
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
+
+
 
 //route not found
 app.use((req, res, next) => {

@@ -37,6 +37,7 @@ export default function PickUpPoint(props) {
   console.log(points);
 
   const [pointId, setPointId] = useState("");
+  const [desPointId, setDesPointId] = useState("");
   const [day, setDay] = useState("");
 
   const handleOnchange = (e) => {
@@ -55,7 +56,7 @@ export default function PickUpPoint(props) {
       navigate("/");
     } else {
       navigate("/SelectTime", {
-        state: { pointId: pointId, tableName: tableName,day:day },
+        state: { pointId: pointId, tableName: tableName,day:day,desPointId:desPointId },
       });
     }
   };
@@ -82,6 +83,28 @@ export default function PickUpPoint(props) {
                       required
                     >
                      <option>Where Is Your Location</option>
+                      {points.map((point) => {
+                        return (
+                          <option key={point.point_id} value={point.point_id}>
+                            {point.point_name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <div className="select_arrow"></div>
+                  </div>
+
+                  <div className="input_field select_option">
+                    <span>
+                      <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
+                    </span>
+                    <select
+                      name="desPointId"
+                      onChange={(e)=>{setDesPointId(e.target.value)}}
+                      value={desPointId}
+                      required
+                    >
+                     <option>Where Is Your Destination</option>
                       {points.map((point) => {
                         return (
                           <option key={point.point_id} value={point.point_id}>
