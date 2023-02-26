@@ -10,12 +10,12 @@ function SelectTime() {
 
   const location = useLocation();
 
-  const { tableName, pointId, desPointId,day } = location.state;
+  const { tableName, pointId, desPointId, day } = location.state;
 
   console.log(pointId + tableName);
 
   //url for axios get
-  const geturl = `http://localhost:3005/shedules?tableName=${tableName}&pointId=${pointId}&day=${day}&desPointId=${desPointId}`;
+  const geturl = `http://localhost:3005/schedules?tableName=${tableName}&pointId=${pointId}&day=${day}&desPointId=${desPointId}`;
   const [urlForGet, seturlForGet] = useState(geturl);
 
   if (0) {
@@ -46,8 +46,8 @@ function SelectTime() {
         <div className="usersTable">
           <h1 className="users_heading">
             {day === "2"
-              ? "Regular Transport shedules"
-              : "Today Up Comming Available Transport"}
+              ? "Regular Transport Schedules"
+              : "Next Available Schedules"}
           </h1>
 
           <table className="table table-striped">

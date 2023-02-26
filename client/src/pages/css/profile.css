@@ -181,3 +181,7 @@ h1.users_heading {
   margin: 0px;
   font-size: 20px;
 }
+nav.pagination1 {
+  background: none;
+  margin-top: 20px;
+}

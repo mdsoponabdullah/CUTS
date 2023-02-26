@@ -7,9 +7,12 @@ const getPoints = (req, res) => {
     SQLquery = `SELECT * FROM point WHERE point_name NOT LIKE '%Station%'`;
   } else if (tableName === "staff") {
     SQLquery = `SELECT * FROM point WHERE point_name NOT LIKE '%Station%'`;
-  } else {
+  } else if (tableName === "student") {
     SQLquery = `SELECT * FROM point WHERE point_name LIKE '%Station%'`;
+  } else if (tableName === "nothing") {
+    SQLquery = `SELECT * FROM point`;
   }
+  
 
   connection.query(SQLquery, (err, results) => {
     if (err) throw err;

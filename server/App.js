@@ -8,7 +8,8 @@ const demoRoute = require("./routers/demo.route");
 const usersRoute = require("./routers/users.route");
 const userRoute = require("./routers/user.route");
 const pointsRoute = require("./routers/points.route");
-const shedulesRote = require("./routers/shedules.route")
+const schedulesRote = require("./routers/schedules.route");
+const transportRoute = require("./routers/transport.route");
 
 const loginRoute = require("./routers/login.route");
 const studentcommunityRoute = require("./routers/studentcommunity.route");
@@ -32,7 +33,7 @@ app.use("/login", loginRoute);
 
 app.use("/demo", demoRoute);
 //shedules
-app.use("/shedules",shedulesRote)
+app.use("/schedules", schedulesRote);
 
 //student_community
 app.use("/studentcommunity", studentcommunityRoute);
@@ -40,15 +41,14 @@ app.use("/studentcommunity", studentcommunityRoute);
 //points
 app.use("/points", pointsRoute);
 
-
+//transportRoute
+app.use("/transports", transportRoute);
 
 // //home route
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
-
-
 
 //route not found
 app.use((req, res, next) => {

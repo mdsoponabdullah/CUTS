@@ -20,6 +20,7 @@ label.logo {
   padding: 0 100px;
   font-weight: bold;
   font-family: emoji;
+  cursor: pointer;
 }
 nav ul {
   float: right;
@@ -43,7 +44,7 @@ nav ul li a {
 a.active,
 a:hover {
   /* background: #eceff2; */
-  color: #00e2ffab !important;
+  color: #40ffdc !important;
   transition: 0.5s;
 }
 .checkbtn {

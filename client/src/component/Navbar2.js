@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./css/navbar2.css";
-import { useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { RiMessengerLine } from "react-icons/ri";
 //import { BiExit } from "react-icons/bi";
 import { BsFillUnlockFill } from "react-icons/bs";
 import { AiFillUnlock } from "react-icons/ai";
-import { SiAboutdotme } from "react-icons/si";
+
 import { RiMessengerFill } from "react-icons/ri";
+import Navbar3 from "./Navbar3";
 
 export default function Navbar2() {
   const [tableName, setTableName] = useState("");
@@ -21,8 +22,6 @@ export default function Navbar2() {
     }
   }, []);
 
-  
-
   return (
     <div>
       <nav>
@@ -30,40 +29,40 @@ export default function Navbar2() {
         <label className="checkbtn">
           <i className="fas fa-bars"></i>
         </label>
-        <label className="logo">CUTS</label>
+        <label className="logo"  onClick={()=>{navigate("/")}}>CUTS</label>
         <ul>
           <li>
-            <a href="/">
+            <NavLink to="/">
               <AiOutlineHome />
-            </a>
+            </NavLink>
           </li>
-          <li>
-            <a href="/">
+          {/* <li>
+            <NavLink to="/">
               <SiAboutdotme />
-            </a>
-          </li>
+            </NavLink>
+          </li> */}
           <li>
             {tableName !== "" ? (
-              <a href="/messenger">
+              <NavLink to="/messenger">
                 <RiMessengerLine />
-              </a>
+              </NavLink>
             ) : (
               ""
             )}
           </li>
           <li>
             {tableName !== "" ? (
-              <a href="/Profile">
+              <NavLink to="/Profile">
                 <CgProfile />
-              </a>
+              </NavLink>
             ) : (
-              <a href="/LoginAs">
+              <NavLink to="/LoginAs">
                 <BsFillUnlockFill />
-              </a>
+              </NavLink>
             )}{" "}
           </li>
 
-          { tableName!==""?(
+          {tableName !== "" ? (
             <li
               className="logout"
               onClick={() => {
@@ -73,16 +72,24 @@ export default function Navbar2() {
               }}
             >
               <AiFillUnlock />
-            </li>) :("")
-          }
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       </nav>
-     {tableName!==""?( <div className="messengerIcon">
-        {" "}
-        <a href="/messenger">
-          <RiMessengerFill />
-        </a>{" "}
-      </div>):("")}
+      <div><Navbar3 /></div>
+
+      {tableName !== "" ? (
+        <div className="messengerIcon">
+          {" "}
+          <NavLink to="/messenger">
+            <RiMessengerFill />
+          </NavLink>{" "}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

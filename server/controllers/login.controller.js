@@ -18,10 +18,11 @@ const createLogin = (req, res) => {
     } else {
       res.send({
         success: false,
-        message: "Incorrect username or password.",
+        message: "Incorrect username or password."
       });
     }
   });
+
 };
 
 module.exports = { createLogin };

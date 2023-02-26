@@ -13,22 +13,25 @@ export default function PickUpPoint(props) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchUser = async () => {
+   const fetchUser = async () => {
+         if(tableName!=="")
+    {
       try {
-        const response = await fetch(
-          `http://localhost:3005/points?tableName=${tableName}`,
-          {
-            method: "GET",
+          const response = await fetch(
+            `http://localhost:3005/points?tableName=${tableName}`,
+            {
+              method: "GET",
+            }
+          );
+  
+          const data = await response.json();
+          if (data.success) {
+            setPoints(data.user);
           }
-        );
-
-        const data = await response.json();
-        if (data.success) {
-          setPoints(data.user);
+        } catch (error) {
+          setError("An error occurred, please try again later.");
         }
-      } catch (error) {
-        setError("An error occurred, please try again later.");
-      }
+    }
     };
     fetchUser();
   }, [tableName]);
@@ -82,7 +85,7 @@ export default function PickUpPoint(props) {
                       value={pointId}
                       required
                     >
-                     <option>Where Is Your Location</option>
+                     <option>Select Location</option>
                       {points.map((point) => {
                         return (
                           <option key={point.point_id} value={point.point_id}>
@@ -104,7 +107,7 @@ export default function PickUpPoint(props) {
                       value={desPointId}
                       required
                     >
-                     <option>Where Is Your Destination</option>
+                     <option>Select Destination</option>
                       {points.map((point) => {
                         return (
                           <option key={point.point_id} value={point.point_id}>
@@ -128,11 +131,11 @@ export default function PickUpPoint(props) {
                       value={day}
                       required
                     >
-                      <option>Select Your Day</option>
+                      <option>Select Day</option>
 
                       <option value="1">Today Available</option>
-                      <option value="2">Regular</option>
-                      <option value="3">Off Day</option>
+                      <option value="Regular">Regular</option>
+                      <option value="OffDay">Off Day</option>
                     </select>
                     <div className="select_arrow"></div>
                   </div>

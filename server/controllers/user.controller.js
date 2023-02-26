@@ -17,7 +17,7 @@ const getUser = (req, res) => {
     if (results.length > 0) {
       res.send({
         success: true,
-        user: results,
+        user:results,
       });
     } else {
       res.send({

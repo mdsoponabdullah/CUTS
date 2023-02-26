@@ -55,7 +55,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
    
     e.preventDefault();
-    console.log(user);
+    //console.log(user);
     let loger;
     if (tableName === "student") {
       loger = user.filter(

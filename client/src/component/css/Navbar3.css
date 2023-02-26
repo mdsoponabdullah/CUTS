@@ -1,0 +1,136 @@
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css);
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+body {
+    /*background-color: #e0e3e8;*/
+    font-family: "Rubik", sans-serif;
+}
+/* ---Sidebar css */
+.text-primary{
+  color: #5a8dee!important;
+}
+.btn-primary {
+    border-color: #5a8dee !important;
+    background-color: #5a8dee !important;
+    color: #fff;
+}
+.shadow-md {
+    box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+}
+.navbar{
+  border-radius: 5px;
+}
+.sidebar{
+    width: 280px;
+    min-height: 100vh;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 1;
+    transition: 0.5s;
+}
+.sidebar.active{
+    right: 0;
+}
+.sd-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+.sidebar-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+.sidebar-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+.sd-body{
+    padding: 15px;
+    max-height: calc(100vh - 67px);
+    overflow-x: hidden;
+}
+.sd-body ul{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 0;
+}
+.sd-body ul li{
+    list-style: none;
+    margin-bottom: 8px;
+}
+.sd-body ul li .sd-link {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 16px;
+  color: #ffffff;
+  background-color: #0082E6;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-white.shadow-md {
+ 
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  float: right;
+  background: none !important;
+  box-shadow: none;
+}
+
+.navbar3icon1 {
+  cursor: pointer;
+  background: #00000000 !important;
+  border: none;
+}
+
+/* container-fluid1 {
+  width: 0;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
+}  */
+
+/* container-fluid1 {
+  position: absolute;
+  top: 18%;
+  right: 5%;
+} */ 
+
+
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-white.shadow-md.navbar3 {
+
+  position: fixed;
+  /* font-size: 43px; */
+  color: white;
+  background: #0082E6 !important;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  /* margin: auto; */
+  border-radius: 50%;
+  left: 92%;
+  top: 70%;
+  
+}
+
+.container-fluid.p-2.navbar3_Icon {
+  position: relative;
+  right: 9%;
+}

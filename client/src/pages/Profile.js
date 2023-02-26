@@ -61,6 +61,7 @@ const Profile = () => {
   return (
     <div>
       <Navbar2 />
+      
       <div>
         <div className="container emp-profile">
           <form method="post">
@@ -82,7 +83,7 @@ const Profile = () => {
                   <h5>{name}</h5>
                   <h6>{proffession}</h6>
                   <p className="proile-rating" style={{ color: "rgb(255 255 255 / 0%)!important" }}>
-                    RANKINGS : <span style={{ color: "rgb(255 255 255 / 0%);" }}>8/10</span>
+                     <span style={{ color: "rgb(255 255 255 / 0%);" }}>.</span>
                   </p>
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item">
