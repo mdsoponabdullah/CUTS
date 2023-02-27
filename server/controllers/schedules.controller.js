@@ -3,30 +3,31 @@ const connection = require("../MySql/db");
 const getAllShedules = (req, res) => {
   const tableName = req.query.tableName;
   const pointId = req.query.pointId;
+  const desPointId = req.query.desPointId;
   const day = req.query.day;
-  let SQLquery;
+  let SQLquery = `with t1 as ( SELECT * FROM (schedule NATURAL join transport )), t2 as (  SELECT * from point ), t3 as ( SELECT Transport_id	, shedule_no, t1.point_id	, time,	 no_of_passengers,	destination_id	, day	, type	,category	,t2.point_id picuppointID,	point_name picuppointName 	 FROM t1 JOIN t2 on t1.point_id=t2.point_id),t4 as (  SELECT  shedule_no sheduleNo ,t2.point_id destinatonId,	point_name destinatonName	FROM t1 JOIN t2 on t2.point_id=t1.destination_id),t5 as (SELECT  * from t4 join t3 on t3.shedule_no=t4.sheduleNo ),t6 as (SELECT shedule_no	,point_id	,picuppointName point_name ,destination_id	,destinatonName destination_name	,Transport_id	,TIME_FORMAT(time, '%h:%i %p')formatedTime ,time	,no_of_passengers	,day	,type	,category	from t5 ) SELECT * from t6`;
 
   if (day === "Regular") {
     if (tableName === "student")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Student" and day="${day}" ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Student" and day="${day}" and destination_id=${desPointId}  ORDER by time`;
     else if (tableName === "teacher")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Teacher" and  day="${day}" ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Teacher" and  day="${day}"  and destination_id=${desPointId} ORDER by time`;
     else if (tableName === "staff")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Staff" and day=${day}  ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Staff" and day="${day}"  and destination_id=${desPointId}  ORDER by time`;
   } else if (day === "OffDay") {
     if (tableName === "student")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Student"  and day="${day}" ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Student"  and day="${day}" and destination_id=${desPointId}  ORDER by time`;
     else if (tableName === "teacher")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Teacher"  and day="${day}" ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Teacher"  and day="${day}" and destination_id=${desPointId}  ORDER by time`;
     else if (tableName === "staff")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Staff"  and day="${day}" ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Staff"  and day="${day}"  and destination_id=${desPointId} ORDER by time`;
   } else {
     if (tableName === "student")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Student" and time >=CURRENT_TIME ORDER by time`;
+      SQLquery += `  WHERE point_id = ${pointId} and category="Student" and day != "OffDay" and destination_id=${desPointId}   and time >=CURRENT_TIME ORDER by time`;
     else if (tableName === "teacher")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Teacher" and time >= CURRENT_TIME ORDER by time`;
+      SQLquery = `  WHERE point_id = ${pointId} and category="Teacher" and day != "OffDay" and destination_id=${desPointId}  and time >= CURRENT_TIME ORDER by time`;
     else if (tableName === "staff")
-      SQLquery = `SELECT point_name,point_id,TIME_FORMAT(time, '%h:%i %p')formatedTime ,type,category,Transport_id  FROM (schedule NATURAL join point)NATURAL join transport  WHERE point_id = ${pointId} and category="Staff" and time >=CURRENT_TIME ORDER by time`;
+      SQLquery += ` WHERE point_id = ${pointId} and category="Staff" and day != "OffDay"  and destination_id=${desPointId} and time >=CURRENT_TIME ORDER by time`;
   }
 
   connection.query(SQLquery, (error, data) => {
@@ -37,7 +38,7 @@ const getAllShedules = (req, res) => {
 };
 
 const showAllSchedule = (req, res) => {
-  const SQLquery = `SELECT * FROM (schedule NATURAL join point)NATURAL join transport order by time`;
+  let SQLquery = `with t1 as ( SELECT * FROM (schedule NATURAL join transport )), t2 as (  SELECT * from point ), t3 as ( SELECT Transport_id	, shedule_no, t1.point_id	, time,	 no_of_passengers,	destination_id	, day	, type	,category	,t2.point_id picuppointID,	point_name picuppointName 	 FROM t1 JOIN t2 on t1.point_id=t2.point_id),t4 as (  SELECT  shedule_no sheduleNo ,t2.point_id destinatonId,	point_name destinatonName	FROM t1 JOIN t2 on t2.point_id=t1.destination_id),t5 as (SELECT  * from t4 join t3 on t3.shedule_no=t4.sheduleNo ),t6 as (SELECT shedule_no	,point_id	,picuppointName point_name ,destination_id	,destinatonName destination_name	,Transport_id	,TIME_FORMAT(time, '%h:%i %p')formatedTime ,time	,no_of_passengers	,day	,type	,category	from t5 ) SELECT * from t6`;
 
   connection.query(SQLquery, (error, data) => {
     if (error) throw error;
@@ -57,20 +58,21 @@ const createSchedule = (req, res) => {
       res.send("successfull");
     }
   });
-
 };
-
 
 const deteleShedule = (req, res) => {
   const schedule_no = req.params.schedule_no;
 
   const SQLquery = `DELETE FROM schedule where shedule_no = ${schedule_no}`;
-  connection.query(SQLquery,(error)=>{
-
-    if(error) throw error;
+  connection.query(SQLquery, (error) => {
+    if (error) throw error;
     res.send("successfully Delete");
-  })
+  });
 };
 
-module.exports = { getAllShedules, createSchedule, showAllSchedule,deteleShedule };
-
+module.exports = {
+  getAllShedules,
+  createSchedule,
+  showAllSchedule,
+  deteleShedule,
+};

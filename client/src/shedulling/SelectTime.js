@@ -54,6 +54,7 @@ function SelectTime() {
             <thead className="thead-dark heading">
               <tr>
                 <th scope="col ">PickUp Point</th>
+                <th scope="col ">Destination Point</th>
                 <th scope="col ">PickUp Time</th>
                 <th scope="col ">Transport Type</th>
                 <th scope="col ">Category</th>
@@ -66,6 +67,7 @@ function SelectTime() {
               {rows.map((item, index) => (
                 <tr key={index}>
                   <td>{item.point_name}</td>
+                  <td>{item.destination_name}</td>
                   <td>{item.formatedTime}</td>
                   <td>{item.type}</td>
                   <td>{item.category}</td>

@@ -7,7 +7,7 @@ import "../pages/css/profile.css";
 
 function ShowSchedules() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(5);
+  const [rowsPerPage] = useState(10);
   const [rows, setRows] = useState([]);
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -47,6 +47,7 @@ function ShowSchedules() {
           <thead className="thead-dark heading">
             <tr>
               <th scope="col ">PickUp Point</th>
+              <th scope="col ">Destination Point</th>
               <th scope="col ">PickUp Time</th>
               <th scope="col ">Transport Type</th>
               <th scope="col ">Category</th>
@@ -60,6 +61,7 @@ function ShowSchedules() {
             {currentRows.map((item, index) => (
               <tr key={index}>
                 <td>{item.point_name}</td>
+                <td>{item.destination_name}</td>
                 <td>{item.time}</td>
                 <td>{item.type}</td>
                 <td>{item.category}</td>
