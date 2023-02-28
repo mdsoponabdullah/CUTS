@@ -70,9 +70,41 @@ const deteleShedule = (req, res) => {
   });
 };
 
+const editSchedule = (req, res) => {
+
+  const x = req.params.schedule_no;
+
+  
+  const {
+    point_id,
+    destination_id,
+    time: time,
+    Transport_id,
+    day,
+    shedule_no,
+  }= req.body;
+
+  const SQLquery =`UPDATE schedule SET Transport_id=?,destination_id=?, point_id=?,time=?,day=? WHERE shedule_no=?`;
+  const arr=[Transport_id,destination_id,point_id,time,day,x];
+  connection.put(SQLquery,arr,(error,result)=>{
+
+    if (error) {
+      console.error(err);
+      res.status(500).json({ error: "Database error sopon" });
+    } else {
+      res.json({ message: "Profile updated successfully",result:result });
+    }
+
+
+  });
+  
+   
+};
+
 module.exports = {
   getAllShedules,
   createSchedule,
   showAllSchedule,
   deteleShedule,
+  editSchedule,
 };

@@ -17,7 +17,7 @@ import Demo from "./component/demo";
 import AppContext from "./context/AppContext";
 import EdditProfile from "./pages/EdditProfile";
 import SelectTime from "./shedulling/SelectTime";
-import UpdateSchedule from "./pages/UpdateSchedule";
+import UpdateSchedule from "./component/updateSchedule";
 import ShowSchedules from "./component/ShowSchedules";
 import InsertSchedule from "./component/InsertSchedule";
 import ComplaintBox from "./pages/ComplaintBox";
@@ -45,6 +45,7 @@ function App() {
             <Route path="/AllSchedules" element={<ShowSchedules />} />
             <Route path="/InsertSchedules" element={<InsertSchedule />} />
             <Route path="/complaintBox" element={<ComplaintBox />} />
+            
 
 
             <Route path="*" element={<Error />} />

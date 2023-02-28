@@ -2,11 +2,41 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faPhone } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import Navbar2 from "./Navbar2";
-//import { useNavigate } from "react-router-dom";
 
-export default function UpdateSchedule() {
-  //const navigate = useNavigate();
+
+
+
+const UpdateSchedule = (props) => {
+  const [schedule, setSchedule] = useState(props.schedule);
+
+  if (schedule) {
+    //setSchedule1(schedule);
+    console.log(schedule);
+    //console.log(schedule);
+  }
+  const { Transport_id, destination_id, point_id, shedule_no, time, day } =
+    schedule;
+
+
+  const handleOnchange = (e) => {
+    setSchedule({ ...schedule, [e.target.name]: e.target.value });
+  };
+
+  const handlesubmit = async (e) => {
+    console.log("sopon", schedule);
+
+    e.preventDefault();
+
+    try {
+       axios.put(`http://localhost:3005/points/${shedule_no}`,schedule);
+       //navigate("/AllSchedules");
+       window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  ////////////////////////////////////////////////////////////
 
   const [points, setPoints] = useState(null);
   const [transports, setTransports] = useState(null);
@@ -33,7 +63,7 @@ export default function UpdateSchedule() {
   }, []);
 
   if (error) console.log(error);
-   console.log(points);
+  //console.log(points);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -53,63 +83,25 @@ export default function UpdateSchedule() {
     fetchUser();
   }, []);
 
-  console.log(transports);
-
-  const [pointId, setPointId] = useState("");
-  const [desPointId, setDesPointId] = useState("");
-  const [transportId, setTransportId] = useState("");
-  const [day, setDay] = useState("");
-  const [time, setTime] = useState("");
-
-  const submit = (e) => {
-    // let x = point;
-    e.preventDefault();
-
-    //console.log(x);
-    alert(
-      pointId + "" + day + " " + transportId + " " + desPointId + " " + time
-    );
-
-    axios
-      .post("http://localhost:3005/schedules", {
-        pointId: pointId,
-        desPointId: desPointId,
-        day: day,
-        transportId: transportId,
-        time: time,
-      })
-      .then(() => {
-        alert("inserted SuccessFully");
-      });
-    setDay("");
-    setTime("");
-    setDesPointId("");
-    setPointId("");
-    setTransportId("");
-  };
-
-  if (points&&transports) {
+  if (points && transports && schedule) {
     return (
       <div>
-        <Navbar2 />
         <div className="form_wrapper">
           <div className="form_container">
             <div className="title_container">
-              <h2>Insert New Schedule</h2>
+              <h2>Update Schedule</h2>
             </div>
             <div className="row clearfix">
               <div>
-                <form action="" method="" onSubmit={submit}>
+                <form action="" method="" onSubmit={handlesubmit}>
                   <div className="input_field select_option">
                     <span>
                       <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
                     </span>
                     <select
-                      name="pointId"
-                      onChange={(e) => {
-                        setPointId(e.target.value);
-                      }}
-                      value={pointId}
+                      name="point_id"
+                      onChange={handleOnchange}
+                      value={point_id}
                       required
                     >
                       <option>Select Location</option>
@@ -129,11 +121,9 @@ export default function UpdateSchedule() {
                       <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
                     </span>
                     <select
-                      name="desPointId"
-                      onChange={(e) => {
-                        setDesPointId(e.target.value);
-                      }}
-                      value={desPointId}
+                      name="destination_id"
+                      onChange={handleOnchange}
+                      value={destination_id}
                       required
                     >
                       <option>Select Destination</option>
@@ -153,11 +143,9 @@ export default function UpdateSchedule() {
                       <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
                     </span>
                     <select
-                      name="transportId"
-                      onChange={(e) => {
-                        setTransportId(e.target.value);
-                      }}
-                      value={transportId}
+                      name="Transport_id"
+                      onChange={handleOnchange}
+                      value={Transport_id}
                       required
                     >
                       <option>Selet transport</option>
@@ -169,9 +157,9 @@ export default function UpdateSchedule() {
                           >
                             {transport.Transport_id +
                               "  " +
-                              transport.category +
-                              " ( " +
                               transport.type +
+                              " ( " +
+                              transport.category +
                               " )"}
                           </option>
                         );
@@ -186,9 +174,7 @@ export default function UpdateSchedule() {
                     </span>
                     <select
                       name="day"
-                      onChange={(e) => {
-                        setDay(e.target.value);
-                      }}
+                      onChange={handleOnchange}
                       value={day}
                       required
                     >
@@ -209,9 +195,7 @@ export default function UpdateSchedule() {
                       type="time"
                       name="time"
                       placeholder="Select Time"
-                      onChange={(e) => {
-                        setTime(e.target.value);
-                      }}
+                      onChange={handleOnchange}
                       value={time}
                       required
                     />
@@ -230,4 +214,6 @@ export default function UpdateSchedule() {
       </div>
     );
   }
-}
+};
+
+export default UpdateSchedule;

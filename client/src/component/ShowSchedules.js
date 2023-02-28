@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FaEdit } from "react-icons/fa";
+import {FaEdit } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
 import axios from "axios";
 import Navbar2 from "../component/Navbar2";
 import "../pages/css/profile.css";
+//import { useNavigate } from "react-router-dom";
+import UpdateSchedule from "./updateSchedule";
 
 function ShowSchedules() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,22 +26,49 @@ function ShowSchedules() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleSelect = (point_id) => {
-    alert(point_id);
+  //const navigate = useNavigate();
+  const [schedule, setSchedule] = useState(null);
+  const [showUpdateSchedule, setShowUpdateSchedule] = useState(false);
+
+  const handleEdit = (item) => {
+    setSchedule(item);
+    //console.log(schedule);
+    if (schedule) {
+      //navigate("/updateSchedule",{state : {schedule}});
+      setShowUpdateSchedule(!showUpdateSchedule);
+    }
   };
 
   const handleDelete = async (schedule_no) => {
+    alert(schedule_no);
     try {
       await axios.delete(`http://localhost:3005/schedules/${schedule_no}`);
       setRows(rows.filter((row) => row.schedule_no !== schedule_no));
+      //window.location.reload();
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div>
+    <div >
+      <div className={showUpdateSchedule? "updateOverLay":""}></div>
       <Navbar2 />
+      <div>
+        {showUpdateSchedule && (
+          <div className="updateSchedule">
+            {" "}
+            <button className="updateClosebtn"
+              onClick={() => {
+                setShowUpdateSchedule(!showUpdateSchedule);
+              }}
+            >
+             X
+            </button>
+            <UpdateSchedule schedule={schedule} />
+          </div>
+        )}{" "}
+      </div>
       <div className="usersTable">
         <h1 className="users_heading">All Schedules</h1>
 
@@ -70,14 +99,14 @@ function ShowSchedules() {
                 <td>
                   <FaEdit
                     onClick={() => {
-                      handleSelect(item.schedule_no);
+                      handleEdit(item);
                     }}
                   />
                 </td>
                 <td>
                   <AiTwotoneDelete
                     onClick={() => {
-                      handleDelete(item.schedule_no);
+                      handleDelete(item.shedule_no);
                     }}
                   />
                 </td>
@@ -85,6 +114,7 @@ function ShowSchedules() {
             ))}
           </tbody>
         </table>
+
         <Pagination
           rowsPerPage={rowsPerPage}
           totalRows={rows.length}
@@ -109,9 +139,9 @@ function Pagination({ rowsPerPage, totalRows, paginate }) {
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a href="#" className="page-link" onClick={() => paginate(number)}>
+            <button className="page-link" onClick={() => paginate(number)}>
               {number}
-            </a>
+            </button>
           </li>
         ))}
       </ul>

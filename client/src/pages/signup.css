@@ -480,3 +480,8 @@ input[type="time"] {
   -moz-appearance: none;
   transition: all 0.2s ease;
 }
+.updateSchedule {
+  position: absolute;
+  width: 100%;
+  /* background: #0000008c; */
+}

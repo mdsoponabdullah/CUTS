@@ -185,3 +185,50 @@ nav.pagination1 {
   background: none;
   margin-top: 20px;
 }
+
+.updateClosebtn {
+  font-size: 25px;
+  background: none;
+  border: navajowhite;
+  position: absolute;
+  left: 63%;
+  top: 30%;
+  color: #ff0404;
+  font-weight: 500;
+  z-index: 12;
+  transition: 1s;
+}
+
+.updateOverLay{
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  transition: 0.5s;
+}
+
+/* .row.profilerow1 {
+  height: 193px;
+} */
+
+.profile-img img {
+  /* width: 70%; */
+  /* height: 100%; */
+  height: 185px;
+  width: 207px;
+  border-radius: 50%;
+}
+
+.profile-img .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -22%;
+  width: 41%;
+  border: none;
+  border-radius: 47%;
+  font-size: 10px;
+  background: #2125293b !important;
+}

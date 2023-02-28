@@ -1,5 +1,7 @@
 /* cmd npm install nodemon express body-parser dotenv uuid cors
  */
+
+const connection = require("./MySql/db");
 const exprsee = require("express");
 const app = exprsee();
 const cors = require("cors");
@@ -9,6 +11,7 @@ const usersRoute = require("./routers/users.route");
 const userRoute = require("./routers/user.route");
 const pointsRoute = require("./routers/points.route");
 const schedulesRote = require("./routers/schedules.route");
+const scheduleRote = require("./routers/schedule.route");
 const transportRoute = require("./routers/transport.route");
 
 const loginRoute = require("./routers/login.route");
@@ -34,6 +37,7 @@ app.use("/login", loginRoute);
 app.use("/demo", demoRoute);
 //shedules
 app.use("/schedules", schedulesRote);
+app.use("/schedule", scheduleRote);
 
 //student_community
 app.use("/studentcommunity", studentcommunityRoute);
@@ -45,6 +49,9 @@ app.use("/points", pointsRoute);
 app.use("/transports", transportRoute);
 
 // //home route
+
+
+
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");

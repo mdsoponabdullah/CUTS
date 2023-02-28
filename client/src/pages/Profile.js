@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Navbar2 from "../component/Navbar2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/profile.css";
+
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 //import { UserContext } from "./Login";
@@ -58,23 +60,65 @@ const Profile = () => {
   }
   //console.log(Student_name);
 
+  ///////////////////////////////////////////////////
+  const [picture, setPicture] = useState("");
+
+  const handlePictureChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setPicture(reader.result);
+      localStorage.setItem("picture", reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+  const pictureUrl = localStorage.getItem("picture");
+
+  ////////////////////////////////
+
   return (
     <div>
       <Navbar2 />
-      
+
       <div>
         <div className="container emp-profile">
           <form method="post">
-            <div className="row">
+            <div className="row profilerow1">
               <div className="col-md-4">
-                <div className="profile-img">
+                {/* <div className="profile-img">
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                    src={imageFile}
                     alt=""
                   />
                   <div className="file btn btn-lg btn-primary">
                     Change Photo
                     <input type="file" name="file" />
+                  </div>
+                  <div className="file btn btn-lg btn-primary">
+                    <form onSubmit={handleSubmit}>
+                      <input name ="file" type="file" onChange={handleFileInputChange} />
+                      <button type="submit">Upload</button>
+                    </form>
+                  </div>
+                </div> */}
+                <div className="profile-img">
+                  {
+                    <img
+                      src={
+                        pictureUrl
+                          ? pictureUrl
+                          : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                      }
+                      alt="Uploaded Picture"
+                    />
+                  }
+                  <div className="file btn btn-lg btn-primary">
+                    Change Photo
+                    <form>
+                      <input type="file" onChange={handlePictureChange} />
+                    </form>
                   </div>
                 </div>
               </div>
@@ -82,8 +126,11 @@ const Profile = () => {
                 <div className="profile-head">
                   <h5>{name}</h5>
                   <h6>{proffession}</h6>
-                  <p className="proile-rating" style={{ color: "rgb(255 255 255 / 0%)!important" }}>
-                     <span style={{ color: "rgb(255 255 255 / 0%);" }}>.</span>
+                  <p
+                    className="proile-rating"
+                    style={{ color: "rgb(255 255 255 / 0%)!important" }}
+                  >
+                    <span style={{ color: "rgb(255 255 255 / 0%);" }}>.</span>
                   </p>
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item">
