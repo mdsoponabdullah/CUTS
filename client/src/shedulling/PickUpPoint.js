@@ -57,7 +57,16 @@ export default function PickUpPoint(props) {
     if (pointId === "") {
       alert("select point");
       navigate("/");
-    } else {
+    }
+    else if (desPointId === "") {
+      alert("select destination");
+      navigate("/");
+    }
+    else  if (day === "") {
+      alert("select day");
+      navigate("/");
+    }
+     else {
       navigate("/SelectTime", {
         state: { pointId: pointId, tableName: tableName,day:day,desPointId:desPointId },
       });

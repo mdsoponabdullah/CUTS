@@ -45,7 +45,8 @@ const Message2 = ({ text, userId, user, userName }) => (
     style={{
       width: "100%",
       position: "relative",
-      left: userId !== user.teacher_id ? "67%" : "0%",
+      left: userId !== user.teacher_id ? "57%" : "0%",
+      
     }}
   >
     <div
@@ -78,7 +79,8 @@ const Message3 = ({ text, userId, user, userName }) => (
     style={{
       width: "100%",
       position: "relative",
-      float: userId !== user.staff_id ? "67%" : "0%",
+      left: userId !== user.staff_id ? "57%" : "0%",
+      
     }}
   >
     <div
