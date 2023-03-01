@@ -101,7 +101,7 @@ export default function Navbar2() {
           )}
         </ul>
       </nav>
-      <div>{tableName==="staff" && user.staff_id===19701073?<Navbar3 />:""}</div>
+      <div>{tableName==="staff" && (user.staff_id===19701073 || user.staff_id===19701002)?<Navbar3 />:""}</div>
 
       {tableName !== "" ? (
         <div className="messengerIcon">

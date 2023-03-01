@@ -31,7 +31,8 @@ export default function Home() {
       <div>
         <PickUpPoint tableName={tableName} />
       </div>
-     <div style={{position:"absolute",bottom:"0%" ,width:"100%"}}><Footer /></div> 
+      <div style={{marginBottom:"170px"}}></div>
+     <div style={{bottom:"0%" ,width:"100%"}}><Footer /></div> 
       
     </div>
   );

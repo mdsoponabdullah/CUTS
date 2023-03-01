@@ -305,7 +305,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div style={{position:"absolute",bottom:"0%" ,width:"100%"}}><Footer /></div> 
+      <div style={{marginBottom:"132px"}}></div>
+      <div style={{bottom:"0%" ,width:"100%"}}><Footer /></div> 
     </div>
   );
 };
