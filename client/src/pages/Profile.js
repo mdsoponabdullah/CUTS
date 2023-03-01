@@ -5,8 +5,9 @@ import Navbar2 from "../component/Navbar2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/profile.css";
 
-import axios from "axios";
+//import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../component/footer";
 
 //import { UserContext } from "./Login";
 
@@ -62,6 +63,7 @@ const Profile = () => {
 
   ///////////////////////////////////////////////////
   const [picture, setPicture] = useState("");
+  if(0) console.log(picture);
 
   const handlePictureChange = (event) => {
     const file = event.target.files[0];
@@ -226,6 +228,7 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
+
                   <div
                     className="tab-pane fade"
                     id="profile"
@@ -302,6 +305,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <div style={{position:"absolute",bottom:"0%" ,width:"100%"}}><Footer /></div> 
     </div>
   );
 };

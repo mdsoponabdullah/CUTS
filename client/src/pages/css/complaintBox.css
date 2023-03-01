@@ -1,24 +1,64 @@
 .complaintBox {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 .complaintBox {
-    width: 80%;
-    margin: auto;
-    position: relative;
-    left: 26%;
+  /* width: 80%; */
+  /* margin: auto; */
+  /* position: relative; */
+  /* left: 26%; */
+  text-align: center;
 }
 
 textarea.compantTextArea {
-    width: 608px;
-    height: 300px;
-    background: #0000005e;
-    padding: 20px;
-    color: white;
-    margin-top: 30px;
-    border-radius: 10px;
+  width: 658px;
+  height: 350px;
+  background: #0000005e;
+  padding: 20px;
+  color: white;
+  margin-top: 30px;
+  border-radius: 10px;
+  border: none;
 }
+
+input.compantTextAreabtn {
+  background: rgb(0, 130, 230);
+  height: 35px;
+  line-height: 35px;
+  /* width: 100%; */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  width: 104px;
+  border-radius: 5px;
+  /* margin: 10px; */
+  margin: 10px 10px 10px 0px;
+}
+
+.complaintBoxForm {
+  width: 80%;
+  margin: auto;
+}
+
+h1.ComplaintBoxHeader {
+  line-height: 0px;
+  color: #f3f1ed;
+  margin-top: 55px;
+  letter-spacing: 5px;
+  font-size: 38px;
+}
+
+.twobtn {
+  /* width: 59%; */
+  width: 658px;
+  margin: auto;
+}
+
 
 input.compantTextAreabtn {
     background: rgb(0, 130, 230);
@@ -36,4 +76,5 @@ input.compantTextAreabtn {
     border-radius: 5px;
     /* margin: 10px; */
     margin: 10px 10px 10px 0px;
+    width: 48%;
 }

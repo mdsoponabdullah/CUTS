@@ -1,0 +1,17 @@
+.footer1 {
+  padding: 50px;
+  position: relative;
+  background: #007bff;
+  width: 100%;
+  bottom: 0%;
+}
+.footerRow h4 {
+    font-size: 17px;
+    color: white;
+}
+
+.footerRow p {
+    font-size: 17px;
+    color: #d1d1d1;
+    padding-right: 10px;
+}

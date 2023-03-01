@@ -110,7 +110,7 @@ const Login = () => {
                   <input
                     type="text"
                     name="id"
-                    placeholder="Enter your student ID or email "
+                    placeholder="Enter your student ID"
                     onChange={(e) => setUserId(e.target.value)}
                     value={userId}
                     required
@@ -125,7 +125,7 @@ const Login = () => {
                   <input
                     type="password"
                     name="password"
-                    placeholder="Re-type Password"
+                    placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required

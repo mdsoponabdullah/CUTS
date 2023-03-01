@@ -10,6 +10,7 @@ import axios from "axios";
 
 import Navbar2 from "../component/Navbar2";
 
+
 const Signup = () => {
   /// useLocation hook
   const location = useLocation();
@@ -213,6 +214,8 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      
+       
     </div>
   );
 };

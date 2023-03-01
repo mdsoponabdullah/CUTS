@@ -13,6 +13,7 @@ const pointsRoute = require("./routers/points.route");
 const schedulesRote = require("./routers/schedules.route");
 const scheduleRote = require("./routers/schedule.route");
 const transportRoute = require("./routers/transport.route");
+const complaintRoute = require("./routers/complaints.route");
 
 const loginRoute = require("./routers/login.route");
 const studentcommunityRoute = require("./routers/studentcommunity.route");
@@ -31,6 +32,9 @@ app.use("/user", userRoute);
 //login route
 
 app.use("/login", loginRoute);
+//complain tRoute
+
+app.use("/complaint", complaintRoute);
 
 //demo route
 

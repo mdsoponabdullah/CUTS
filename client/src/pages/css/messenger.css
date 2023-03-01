@@ -73,3 +73,8 @@ h6.userName {
   /* line-height: inherit; */
   margin-bottom: 2px;
 }
+
+.messenger {
+  width: 42%;
+  margin: 35px auto;
+}

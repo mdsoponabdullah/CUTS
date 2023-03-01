@@ -25,6 +25,7 @@ const getPoints = (req, res) => {
         success: false,
       });
     }
+
   });
 };
 

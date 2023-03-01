@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./css/messenger.css";
 import Navbar2 from "../component/Navbar2";
+import Footer from "../component/footer";
 
 const Message1 = ({ text, userId, user, userName }) => (
   <div className="outerContainerOfMessanger">
@@ -10,7 +11,7 @@ const Message1 = ({ text, userId, user, userName }) => (
       style={{
         width: "100%",
         position: "relative",
-        left: userId !== user.Student_id ? "67%" : "0%",
+        left: userId !== user.Student_id ? "57%" : "0%",
       }}
     >
       <div
@@ -194,6 +195,7 @@ const Messenger = () => {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   } else if (tableName === "teacher") {
@@ -252,6 +254,7 @@ const Messenger = () => {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   } else if (tableName === "staff") {
@@ -310,6 +313,7 @@ const Messenger = () => {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
