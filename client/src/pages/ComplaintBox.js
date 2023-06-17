@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import Footer from "../component/footer";
 import Navbar2 from "../component/Navbar2";
@@ -31,10 +31,10 @@ export default function ComplaintBox() {
 
   const navigate = useNavigate();
 
-
   const form = useRef();
 
   const Submit = async (e) => {
+    alert("mcd,mncsdkmncsdk");
     ///////////////////
     if (tableName === "student") setUserId(user.Student_id);
     else if (tableName === "staff") setUserId(user.staff_id);
@@ -46,19 +46,25 @@ export default function ComplaintBox() {
     e.preventDefault();
 
     console.log(userId);
- //////////////////////////////////////////////////////
- 
+    //////////////////////////////////////////////////////
 
- emailjs.sendForm('service_q9hwnok', 'template_k602chr', form.current, 'q_EPBxGK5YU9w5wZm')
-   .then((result) => {
-       console.log(result.text);
-   }, (error) => {
-       console.log(error.text);
-   });
+    emailjs
+      .sendForm(
+        "service_q9hwnok",
+        "template_k602chr",
+        form.current,
+        "q_EPBxGK5YU9w5wZm"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
 
- /////////////////////////////////////////////////////
-
-
+    /////////////////////////////////////////////////////
 
     if (userId && tableName) {
       axios
@@ -70,7 +76,6 @@ export default function ComplaintBox() {
         .then(() => {
           alert("successfull complaint sends to proctor");
           navigate("/");
-          
         });
     }
   };
@@ -79,9 +84,8 @@ export default function ComplaintBox() {
     <div>
       <Navbar2 />
       <form ref={form} onSubmit={Submit} className="complaintBoxForm">
-     
         <div className="complaintBox">
-        <h1 className="ComplaintBoxHeader">Complaint Box</h1>
+          <h1 className="ComplaintBoxHeader">Complaint Box</h1>
           <div className="complaintBoxTextArea">
             <textarea
               className="compantTextArea"
@@ -111,8 +115,10 @@ export default function ComplaintBox() {
           </div>
         </div>
       </form>
-      
-      <div style={{position:"absolute",bottom:"0%" ,width:"100%"}}><Footer /></div> 
+
+      <div style={{  width: "100%" }}>
+        <Footer />
+      </div>
     </div>
   );
 }
