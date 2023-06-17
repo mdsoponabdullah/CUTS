@@ -1,17 +1,19 @@
-.messengerIcon {
-    position: fixed;
-    /* font-size: 43px; */
-    color: white;
-    background: #0082E6;
-    height: 70px;
-    width: 70px;
-    text-align: center;
-    /* margin: auto; */
-    border-radius: 50%;
-    left: 91.5%;
-    top: 59%;
-    /* padding-bottom: 46px; */
-}
+
+    .messengerIcon {
+        position: fixed;
+        /* font-size: 43px; */
+        color: white;
+        background: #0082E6;
+        height: 70px;
+        width: 70px;
+        text-align: center;
+        /* margin: auto; */
+        border-radius: 50%;
+        left: 91.5%;
+        top: 59%;
+        /* padding-bottom: 46px; */
+        display: none;
+    }
 
 .messengerIcon a {
     /* color: var(--bs-link-color); */

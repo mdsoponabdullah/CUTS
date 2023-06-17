@@ -18,8 +18,8 @@ const Profile = () => {
   const [tableName, setTableName] = useState("");
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("loginInformationOfUser");
-
+    const storedUser =  localStorage.getItem("loginInformationOfUser");
+ 
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
@@ -114,6 +114,8 @@ const Profile = () => {
                           : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                       }
                       alt="Uploaded Picture"
+                      
+
                     />
                   }
                   <div className="file btn btn-lg btn-primary">

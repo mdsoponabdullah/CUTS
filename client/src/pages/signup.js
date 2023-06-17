@@ -90,7 +90,7 @@ const Signup = () => {
                   <input
                     type="text"
                     name="Student_id"
-                    placeholder="Enter your student ID "
+                    placeholder="Enter your  ID "
                     onChange={handleOnchange}
                     value={Student_id}
                     required

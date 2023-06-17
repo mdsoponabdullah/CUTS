@@ -86,7 +86,7 @@ else {
         <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">
-            <h2>Job Title</h2>
+            <h2>SIGNUP AS</h2>
           </div>
           <div className="row clearfix">
             <div > 
@@ -99,7 +99,7 @@ else {
                 <div className="input_field select_option">
                 <span><FontAwesomeIcon icon={faBuilding} ></FontAwesomeIcon></span>    
                 <select name ="jobTitle"  onChange={handleOnchange} value = {jobTitle} required >
-                  <option >SIGNUP AS A </option>
+                  <option >SIGNUP AS</option>
                   <option value= "student" >STUDENT</option> 
                   <option value= "teacher" >TEACHER</option>
                   <option value= "staff" >STAFF</option>

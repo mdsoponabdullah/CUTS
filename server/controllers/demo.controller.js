@@ -20,7 +20,9 @@ const getAllDemo =(req,res)=>{
 
     // })
     
+    
 
+    
 };
 
 // create users  // post

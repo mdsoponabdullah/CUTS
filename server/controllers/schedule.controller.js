@@ -17,6 +17,7 @@ const connection = require("../MySql/db");
 //         res.status(500).json({ error: "Database error sopon" });
 //       } else {
 //         res.json({ message: "Profile updated successfully" });
+
 //       }
   
   

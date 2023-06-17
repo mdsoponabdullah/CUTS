@@ -90,7 +90,7 @@ const submit=(e)=>{
         <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">
-            <h2>Who are you?</h2>
+            
           </div>
           <div className="row clearfix">
             <div > 
@@ -103,7 +103,7 @@ const submit=(e)=>{
                 <div className="input_field select_option">
                 <span><FontAwesomeIcon icon={faBuilding} ></FontAwesomeIcon></span>    
                 <select name ="jobTitle"  onChange={handleOnchange} value = {jobTitle} required >
-                  <option >SIGNIN AS A </option>
+                  <option >SIGNIN AS </option>
                   <option value= "student" >STUDENT</option> 
                   <option value= "teacher" >TEACHER</option>
                   <option value= "staff" >STAFF</option>

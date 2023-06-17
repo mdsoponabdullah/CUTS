@@ -78,3 +78,12 @@ input.compantTextAreabtn {
     margin: 10px 10px 10px 0px;
     width: 48%;
 }
+
+a.showLocation:hover {
+  text-decoration: none;
+  color: black !important;
+}
+a.showLocation {
+  color: #0082E6;
+  font-weight: 700;
+}

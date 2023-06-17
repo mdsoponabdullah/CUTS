@@ -4,14 +4,16 @@ import "./css/messenger.css";
 import Navbar2 from "../component/Navbar2";
 import Footer from "../component/footer";
 
-const Message1 = ({ text, userId, user, userName }) => (
+const Message1 = ({ text, userId, user, userName , time}) => (
   <div className="outerContainerOfMessanger">
     <div
       className="messageContainer"
       style={{
         width: "100%",
         position: "relative",
-        left: userId !== user.Student_id ? "57%" : "0%",
+
+        display: "flex",
+        justifyContent: userId !== user.Student_id ? "flex-end" : "",
       }}
     >
       <div
@@ -25,12 +27,15 @@ const Message1 = ({ text, userId, user, userName }) => (
           marginBottom: "1em",
         }}
       >
+         <p className="messageDeliverDate">{ time}</p>
         <h6
           className="userName"
           style={{ color: userId === user.Student_id ? "#3d1681" : "green" }}
         >
-          {userName}
+          {userName} 
+         
         </h6>
+        
         <h3 className="text" style={{ fontSize: "14px" }}>
           {text}
         </h3>
@@ -39,14 +44,14 @@ const Message1 = ({ text, userId, user, userName }) => (
   </div>
 );
 
-const Message2 = ({ text, userId, user, userName }) => (
+const Message2 = ({ text, userId, user, userName ,time}) => (
   <div
     className="messageContainer"
     style={{
       width: "100%",
       position: "relative",
-      left: userId !== user.teacher_id ? "57%" : "0%",
-      
+      display: "flex",
+      justifyContent: userId !== user.Student_id ? "flex-end" : "",
     }}
   >
     <div
@@ -60,6 +65,7 @@ const Message2 = ({ text, userId, user, userName }) => (
         marginBottom: "1em",
       }}
     >
+       <p className="messageDeliverDate">{ time}</p>
       <h6
         className="userName"
         style={{ color: userId === user.teacher_id ? "#3d1681" : "green" }}
@@ -73,14 +79,14 @@ const Message2 = ({ text, userId, user, userName }) => (
   </div>
 );
 
-const Message3 = ({ text, userId, user, userName }) => (
+const Message3 = ({ text, userId, user, userName ,time}) => (
   <div
     className="messageContainer"
     style={{
       width: "100%",
       position: "relative",
-      left: userId !== user.staff_id ? "57%" : "0%",
-      
+      display: "flex",
+      justifyContent: userId !== user.Student_id ? "flex-end" : "",
     }}
   >
     <div
@@ -94,6 +100,7 @@ const Message3 = ({ text, userId, user, userName }) => (
         marginBottom: "1em",
       }}
     >
+       <p className="messageDeliverDate">{ time}</p>
       <h6
         className="userName"
         style={{ color: userId === user.Student_id ? "#3d1681" : "green" }}
@@ -166,7 +173,9 @@ const Messenger = () => {
       <div>
         <Navbar2 />
         <div className="messenger">
-          <div className="messengerHeader"></div>
+          <div className="messengerHeader">
+            <p className="chatboxHeader">Chat Box</p>
+          </div>
           <div className="messageBox">
             <div style={{}} className="messages">
               {messages.map((m, index) => (
@@ -176,9 +185,11 @@ const Messenger = () => {
                   text={m.message}
                   userId={m.student_id}
                   userName={m.Student_name}
+                  time={m.time}
                 />
               ))}
             </div>
+            
           </div>
 
           <div className="inputbox">
@@ -225,7 +236,9 @@ const Messenger = () => {
       <div>
         <Navbar2 />
         <div className="messenger">
-          <div className="messengerHeader"></div>
+          <div className="messengerHeader">
+            <p className="chatboxHeader">Chat Box</p>
+          </div>
           <div className="messageBox">
             <div style={{}} className="messages">
               {messages.map((m, index) => (
@@ -235,6 +248,7 @@ const Messenger = () => {
                   text={m.message}
                   userId={m.teacher_id}
                   userName={m.teacher_name}
+                  time={m.time}
                 />
               ))}
             </div>
@@ -284,7 +298,9 @@ const Messenger = () => {
       <div>
         <Navbar2 />
         <div className="messenger">
-          <div className="messengerHeader"></div>
+          <div className="messengerHeader">
+            <p className="chatboxHeader">Chat Box</p>
+          </div>
           <div className="messageBox">
             <div style={{}} className="messages">
               {messages.map((m, index) => (
@@ -294,6 +310,7 @@ const Messenger = () => {
                   text={m.message}
                   userId={m.staff_id}
                   userName={m.staff_name}
+                  time={m.time}
                 />
               ))}
             </div>

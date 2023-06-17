@@ -21,6 +21,7 @@ import UpdateSchedule from "./component/updateSchedule";
 import ShowSchedules from "./component/ShowSchedules";
 import InsertSchedule from "./component/InsertSchedule";
 import ComplaintBox from "./pages/ComplaintBox";
+import Map from "./pages/map.js"
 
 function App() {
   const [userTypeTableName, setUserTypeTableName] = useState("");
@@ -35,6 +36,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/loginAs" element={<LoginAs />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/map" element={<Map />} />
             <Route path="/users" element={<Users />} />
             <Route path="/selectUsers" element={<SelectUsers />} />
             <Route path="/messenger" element={<Messenger />} />

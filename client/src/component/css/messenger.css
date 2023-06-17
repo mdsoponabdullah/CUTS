@@ -1,0 +1,18 @@
+.messageBox {
+    height: 67vh;
+    /* padding: 1em; */
+    width: 100%;
+    padding: 30px;
+    background: #000000c9;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.chatboxHeader {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #0082E6;
+    line-height: 1;
+    margin: 0;
+}

@@ -111,7 +111,7 @@ const EdditProfile = () => {
         <div className="form_wrapper">
           <div className="form_container">
             <div className="title_container">
-              <h2>Eddit Your Profile</h2>
+              <h2>Edit Your Profile</h2>
             </div>
             <div className="row clearfix">
               <div>

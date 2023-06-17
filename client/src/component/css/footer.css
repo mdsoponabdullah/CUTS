@@ -1,9 +1,11 @@
+
 .footer1 {
-  padding: 50px;
+  padding: 22px;
   position: relative;
   background: #007bff;
   width: 100%;
   bottom: 0%;
+  margin-top: 18.4rem!important;
 }
 .footerRow h4 {
     font-size: 17px;

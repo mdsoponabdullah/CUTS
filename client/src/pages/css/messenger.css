@@ -75,6 +75,31 @@ h6.userName {
 }
 
 .messenger {
-  width: 42%;
+  width: 60%;
   margin: 35px auto;
 }
+
+
+.chatboxHeader {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0082E6;
+  line-height: 1;
+  margin: 0;
+}
+
+
+
+p.messageDeliverDate {
+  /* margin: -6px; */
+  float: right;
+  font-size: 10px;
+  position: relative;
+  top: -7px;
+}
+
+
+
+
+

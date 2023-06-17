@@ -12,6 +12,7 @@ const getPoints = (req, res) => {
   } else if (tableName === "nothing") {
     SQLquery = `SELECT * FROM point`;
   }
+  
 
   connection.query(SQLquery, (err, results) => {
     if (err) throw err;

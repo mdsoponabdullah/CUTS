@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./css/navbar2.css";
-import {  NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { RiMessengerLine } from "react-icons/ri";
@@ -11,10 +11,11 @@ import { AiFillUnlock } from "react-icons/ai";
 
 import { RiMessengerFill } from "react-icons/ri";
 import Navbar3 from "./Navbar3";
+//import Logo from "./image/culog.svg";
 
 export default function Navbar2() {
   const [tableName, setTableName] = useState("");
-  const [user,setUser]= useState(null);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   // const [user, setUser] = useState({});
@@ -40,7 +41,15 @@ export default function Navbar2() {
         <label className="checkbtn">
           <i className="fas fa-bars"></i>
         </label>
-        <label className="logo"  onClick={()=>{navigate("/")}}>CUTS</label>
+        <label
+          className="logo"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          
+          CUTS
+        </label>
         <ul>
           <li>
             <NavLink to="/">
@@ -52,7 +61,6 @@ export default function Navbar2() {
             {tableName !== "" ? (
               <NavLink to="/complaintBox">
                 <BiEnvelope />
-              
               </NavLink>
             ) : (
               ""
@@ -101,7 +109,14 @@ export default function Navbar2() {
           )}
         </ul>
       </nav>
-      <div>{tableName==="staff" && (user.staff_id===19701073 || user.staff_id===19701002)?<Navbar3 />:""}</div>
+      <div>
+        {tableName === "staff" &&
+        (user.staff_id === 19701073 || user.staff_id === 19701002) ? (
+          <Navbar3 />
+        ) : (
+          ""
+        )}
+      </div>
 
       {tableName !== "" ? (
         <div className="messengerIcon">

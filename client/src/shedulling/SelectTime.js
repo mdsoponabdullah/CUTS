@@ -60,7 +60,7 @@ function SelectTime() {
                 <th scope="col ">Category</th>
                 <th scope="col ">Transport Id</th>
 
-                <th scope="col ">Select</th>
+                <th scope="col ">Location</th>
               </tr>
             </thead>
             <tbody>
@@ -74,14 +74,8 @@ function SelectTime() {
                   <td>{item.Transport_id}</td>
 
                   <td>
-                    <input
-                      onClick={() => {
-                        handleSelect(item.point_id);
-                      }}
-                      type="checkbox"
-                      name="myCheckbox"
-                      value="true"
-                    ></input>
+                    
+                    <a className="showLocation" href="http://localhost/gps/shuttleProfile.php">Show</a>
                   </td>
                 </tr>
               ))}
