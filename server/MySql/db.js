@@ -4,9 +4,9 @@ var mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'cuts',
+    user: 'root',
     port: '3306',  /* port on which phpmyadmin run */
-    password: 'cuts',
+    password: '',
     database: 'cuts',
    // socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock' //for mac and linux
 });
